@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minhas Motos</title>
+</head>
+    {% block content %} <!-- Bloco de conteúdo -->
+    <body>
+        {% for bike in bikes %}
+            <h3>{{ bike.model }}</h3> <!-- Mostra os dados de bikes do banco de dados -->
+        {% endfor %}
+    </body>
+    {% endblock %} <!-- Fecha o bloco -->
+</html>
