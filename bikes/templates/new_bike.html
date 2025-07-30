@@ -1,0 +1,15 @@
+{% extends "base.html" %} 
+
+{% block content %}
+    <form method="post" enctype="multipart/form-data"> <!-- o usuário vai enviar a informação, o form aceita varios tipos de conteúdo -->
+        {% csrf_token %} <!-- token de segurança do Django, para evitar ataques CSRF -->
+        
+        <table>
+            {{ new_bike_form.as_table }} <!-- renderiza o form que foi criado no views.py --> 
+        </table>
+
+        <input type="submit" value="Cadastrar" class="btn btn-primary" /> <!-- botão de submit para enviar o form -->
+        
+    </form>
+
+{% endblock %}

@@ -1,15 +1,191 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minhas Motos</title>
-</head>
-    {% block content %} <!-- Bloco de conteúdo -->
-    <body>
-        {% for bike in bikes %}
-            <h3>{{ bike.model }}</h3> <!-- Mostra os dados de bikes do banco de dados -->
-        {% endfor %}
-    </body>
-    {% endblock %} <!-- Fecha o bloco -->
-</html>
+{% extends "base.html" %} <!-- 
+Essa linha indica que esse modelo faz conexão com modelo básico chamado "base.html" -->
+
+
+{% block content %}
+  <style>
+    :root {
+      --primary-color: #0096c7;
+      --hover-color: #0077b6;
+      --bg-color: #f8f9fa;
+      --card-bg: #ffffff;
+      --text-primary: #2d3436;
+      --text-secondary: #636e72;
+    }
+
+    body {
+      background-color: var(--bg-color);
+    }
+
+    .bike-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin: 0 auto;
+      max-width: 1400px;
+      padding: 40px 20px;
+    }
+
+    .bike-card {
+      background-color: var(--card-bg);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      border-radius: 15px;
+      overflow: hidden;
+      text-align: left;
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      position: relative;
+    }
+
+    .bike-card:hover {
+      cursor: pointer;
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .bike-card img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .bike-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .bike-info {
+      padding: 20px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.95), rgba(255,255,255,1));
+    }
+
+    .bike-card h2 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin: 0 0 10px 0;
+      color: var(--text-primary);
+    }
+
+    .bike-card p {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      margin: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .search-container {
+      background-color: var(--card-bg);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      margin: 40px auto;
+      max-width: 800px;
+    }
+
+    form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 15px 20px;
+      font-size: 16px;
+      border: 2px solid #e9ecef;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      background-color: #f8f9fa;
+    }
+
+    input[type="text"]:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(0, 150, 199, 0.1);
+      background-color: #ffffff;
+    }
+
+    button[type="submit"] {
+      background-color: var(--primary-color);
+      color: #fff;
+      border: none;
+      padding: 15px 30px;
+      font-size: 16px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      min-width: 120px;
+    }
+
+    button[type="submit"]:hover {
+      background-color: var(--hover-color);
+      transform: translateY(-2px);
+    }
+
+    .no-results {
+      text-align: center;
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      grid-column: 1 / -1;
+      padding: 40px;
+      background-color: var(--card-bg);
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .price-tag {
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+
+    @media (max-width: 768px) {
+      .bike-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        padding: 20px;
+      }
+
+      .search-container {
+        margin: 20px;
+        padding: 20px;
+      }
+
+      form {
+        flex-direction: column;
+      }
+
+      button[type="submit"] {
+        width: 100%;
+      }
+    }
+  </style>
+
+  <div class="search-container">
+    <form method="GET" action="{% url 'bikes_list' %}">
+      <input type="text" name="search" placeholder="Buscar moto...">
+      <button type="submit">Buscar</button>
+    </form>
+  </div>
+
+  <div class="bike-grid">
+    {% if bikes %}
+      {% for bike in bikes %}
+        <div class="bike-card">
+          <img src="{{ bike.photo.url }}" alt="{{ bike.model }} - {{ bike.brand }}">
+          <div class="bike-info">
+            <h2>{{ bike.brand }} {{ bike.model }}</h2>
+            <p>
+              <span>{{ bike.factory_year }}</span>
+              <span class="price-tag">R$ {{ bike.value }}</span>
+            </p>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p class="no-results">Nenhuma moto encontrada.</p>
+    {% endif %}
+  </div>
+{% endblock %}
