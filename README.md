@@ -16,5 +16,14 @@ Este projeto é uma aplicação web desenvolvida com Django para cadastro, lista
 - `accounts/`: App para registro de usuários.
 - `media/`: Pasta onde as fotos das motos são armazenadas.
 
+## Tecnologias Utilizadas
+
+- **Python 3.11+**
+- **Django 5.1**
+- **SQLite** (banco de dados padrão do Django)
+- **HTML5** e **CSS3** (templates e estilização)
+- **Bootstrap** (opcional, para estilização dos formulários)
+- **Admin do Django** (interface administrativa)
+- **Sistema de arquivos local** para upload de imagens
 
 Projeto para fins de estudo.
