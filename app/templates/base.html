@@ -72,8 +72,19 @@
   <header>
     <nav>
       <ul>
+        {% if user.is_authenticated %}
+          <li>Olá, {{ user.username }}</li>
+          <li><a href="{% url 'new_bike' %}">Cadastrar Moto</a></li>
+        {% else %}
+          <li><a href="{% url 'login' %}">Login</a></li>
+          <li><a href="{% url 'register' %}">Registrar</a></li>
+        {% endif %}
+
         <li><a href="{% url 'bikes_list' %}">Motos</a></li>
-        <li><a href="{% url 'new_bike' %}">Cadastrar Moto</a></li>
+
+        {% if user.is_authenticated %}
+          <li><a href="{% url 'logout' %}">Sair</a></li>
+        {% endif %}
       </ul>
     </nav>
   </header>
