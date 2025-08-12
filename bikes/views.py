@@ -25,5 +25,5 @@ def new_bike_view(request):
             new_bike_form.save()
             return redirect('bikes_list') # Redireciona para a lista de motos cadastradas
     elif request.method == 'GET':
-        new_bike_form = BikeModelForm()
+        new_bike_form = BikeModelForm() # Retorna o formulário vazio
     return render(request, 'new_bike.html', { 'new_bike_form': new_bike_form }) # Renderiza o template new_bike.html e passa o formulário para ele  
