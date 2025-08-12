@@ -1,21 +1,19 @@
 from django.shortcuts import render, redirect # Renderiza uma resposta http e devolve uma HttpResponse para o usuário
 from bikes.models import Bike
 from .forms import BikeModelForm
+from django.views import View
 
 
-def bikes_view(request): # Os dados da requisição do usuário
-    bikes = Bike.objects.all().order_by('model') # Busca todos os objetos, "order_by" é para ordenar a busca pelo modelo da moto
+class BikeView(View):
 
-    # Caso tenha uma busca específica
-    search = request.GET.get('search') # pega a requisição do usuário, captura o parâmetro search
+    def get(self, request): 
+        bikes = Bike.objects.all().order_by('model') 
+        search = request.GET.get('search') 
 
-    if search:   
-        bikes = Bike.objects.filter(model__icontains=search) # Filtra a busca que usuário passou, "icontains" é para ignorar maiúsculas ou minúsculas
-    return render(
-        request, # Requisição do usuário
-        'bikes.html', # Conecta com o html feito
-        {'bikes': bikes}
-    ) # Primeiro passando a requisição do usuário, depois o caminho
+        if search:
+            bikes = Bike.objects.filter(model__icontains = search) # Filtra a busca que usuário passou, "icontains" é para ignorar maiúsculas ou minúsculas
+
+        return render(request, 'bikes.html', {'bikes': bikes}) # Pega a requisição do usuário, vai conectar com o html feito e passar os dados python para o html
 
 
 def new_bike_view(request):
