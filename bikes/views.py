@@ -22,8 +22,8 @@ class NewBikeView(View):
         return render(request, 'new_bike_html', {'new_bike_form': new_bike_form}) # Renderiza o template new_bike.html e passa o formulário para ele
     
     def post(self, request):
-        new_bike_view = BikeModelForm(request.POST, request.FILES)
-        if new_bike_view.is_valid():
-            new_bike_view.save()
+        new_bike_form = BikeModelForm(request.POST, request.FILES)
+        if new_bike_form.is_valid():
+            new_bike_form.save()
             return redirect('bike_list')
-        
+        return render(request, 'new_bike_html', {'new_bike_form': new_bike_form})
