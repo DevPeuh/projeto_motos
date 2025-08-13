@@ -26,4 +26,3 @@ Este projeto é uma aplicação web desenvolvida com Django para cadastro, lista
 - **Admin do Django** (interface administrativa)
 - **Sistema de arquivos local** para upload de imagens
 
-Projeto para fins de estudo.
