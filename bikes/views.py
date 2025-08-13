@@ -16,12 +16,13 @@ class BikeView(View):
         return render(request, 'bikes.html', {'bikes': bikes}) # Pega a requisição do usuário, vai conectar com o html feito e passar os dados python para o html
 
 
-def new_bike_view(request):
-    if request.method == 'POST':
-        new_bike_form = BikeModelForm(request.POST, request.FILES) # Cria um novo formulário com os dados que o usuário passou, request.POST é para pegar os dados do formulário e request.FILES é para pegar os arquivos que o usuário passou, como a imagem
-        if new_bike_form.is_valid():
-            new_bike_form.save()
-            return redirect('bikes_list') # Redireciona para a lista de motos cadastradas
-    elif request.method == 'GET':
-        new_bike_form = BikeModelForm() # Retorna o formulário vazio
-    return render(request, 'new_bike.html', { 'new_bike_form': new_bike_form }) # Renderiza o template new_bike.html e passa o formulário para ele  
+class NewCarView(View):
+    def get(self, request):
+        new_bike_form = BikeModelForm()
+        return render(request, 'new_bike_html', {'new_bike_form': new_bike_view}) # Renderiza o template new_bike.html e passa o formulário para ele
+    
+    def post(self, request):
+        new_bike_view = BikeModelForm(request.POST, request.FILES)
+        if new_bike_view.is_valid():
+            new_bike_view.save()
+            return redirect('bike_list')
