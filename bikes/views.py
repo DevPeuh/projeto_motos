@@ -27,3 +27,4 @@ class NewBikeView(View):
             new_bike_form.save()
             return redirect('bike_list')
         return render(request, 'new_bike_html', {'new_bike_form': new_bike_form})
+    
