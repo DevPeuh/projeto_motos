@@ -28,3 +28,5 @@ class NewBikeView(View):
             return redirect('bike_list')
         return render(request, 'new_bike_html', {'new_bike_form': new_bike_form})
     
+class BikeDetailView(View):
+    pass
