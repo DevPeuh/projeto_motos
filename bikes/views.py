@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect # Renderiza uma resposta http e de
 from bikes.models import Bike
 from .forms import BikeModelForm
 from django.views import View
+from django.views.generic import ListView
 
 
 class BikeView(View):
@@ -15,6 +16,10 @@ class BikeView(View):
 
         return render(request, 'bikes.html', {'bikes': bikes}) # Pega a requisição do usuário, vai conectar com o html feito e passar os dados python para o html
 
+class BikesListView(ListView):
+    model = Bike
+    template_name = 'bikes.html'
+    context_object_name = 'bikes'
 
 class NewBikeView(View):
     def get(self, request):
