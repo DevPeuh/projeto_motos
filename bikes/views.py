@@ -5,21 +5,18 @@ from django.views import View
 from django.views.generic import ListView
 
 
-class BikeView(View):
-
-    def get(self, request): 
-        bikes = Bike.objects.all().order_by('model') 
-        search = request.GET.get('search') 
-
-        if search:
-            bikes = Bike.objects.filter(model__icontains = search) # Filtra a busca que usuário passou, "icontains" é para ignorar maiúsculas ou minúsculas
-
-        return render(request, 'bikes.html', {'bikes': bikes}) # Pega a requisição do usuário, vai conectar com o html feito e passar os dados python para o html
-
 class BikesListView(ListView):
     model = Bike
     template_name = 'bikes.html'
-    context_object_name = 'bikes'
+    context_object_name = 'bikes' 
+
+    def get_queryset(self):
+        # Super() puxa da ListView
+        bike = super().get_queryset().order_by('model') # Ordena as motos pelo modelo
+        search = self.request.GET.get('search')
+        if search:
+            bike = bike.filter(model__icontains=search) #icontains é para ignorar maiúsculas ou minúsculas
+        return bike
 
 class NewBikeView(View):
     def get(self, request):
