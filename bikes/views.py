@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect # Renderiza uma resposta http e de
 from bikes.models import Bike
 from .forms import BikeModelForm
 from django.views import View
-from django.views.generic import ListView
+from django.views.generic import ListView, CreateView
 
 
 class BikesListView(ListView):
@@ -30,5 +30,8 @@ class NewBikeView(View):
             return redirect('bike_list')
         return render(request, 'new_bike_html', {'new_bike_form': new_bike_form})
     
-class BikeDetailView(View):
-    pass
+class BikeCreateView(CreateView):
+    model = Bike
+    form_class = BikeModelForm
+    template_name = 'new_bike.html'
+    success_url = '/bikes/'
