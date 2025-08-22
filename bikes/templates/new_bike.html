@@ -5,7 +5,7 @@
         {% csrf_token %} <!-- token de segurança do Django, para evitar ataques CSRF -->
         
         <table>
-            {{ new_bike_form.as_table }} <!-- renderiza o form que foi criado no views.py --> 
+            {{ form.as_table }} <!-- renderiza o form que foi criado no views.py, as_table: cada campo do form será uma linha da tabela --> 
         </table>
 
         <input type="submit" value="Cadastrar" class="btn btn-primary" /> <!-- botão de submit para enviar o form -->

@@ -12,7 +12,7 @@ class BikesListView(ListView):
 
     def get_queryset(self):
         # Super() puxa da ListView
-        bike = super().get_queryset().order_by('model') # Ordena as motos pelo modelo
+        bike = super().get_queryset().order_by('model') # get_queryset retorna um queryset de objetos Bike ordenados pelo campo 'model'
         search = self.request.GET.get('search')
         if search:
             bike = bike.filter(model__icontains=search) #icontains é para ignorar maiúsculas ou minúsculas
