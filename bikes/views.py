@@ -35,3 +35,6 @@ class BikeCreateView(CreateView):
     form_class = BikeModelForm
     template_name = 'new_bike.html'
     success_url = '/bikes/'
+
+
+    

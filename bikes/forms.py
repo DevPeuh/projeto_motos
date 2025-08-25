@@ -39,4 +39,9 @@ class BikeModelForm(forms.ModelForm):
             self.add_error('plate', 'A placa deve ter pelo menos 7 caracteres.')
         return plate
     
-    
+    def clean_model(self):
+        model = self.cleaned_data.get('model')
+
+        if model is not None and len(model) < 3:
+            self.add_error('model', 'O modelo deve ter pelo menos 3 caracteres.')
+        return model
