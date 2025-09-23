@@ -23,6 +23,6 @@ class NewBikeCreateView(CreateView):
     success_url = '/bikes/'
 
  
-class BikeDeatilView(DetailView):
+class BikeDetailView(DetailView):
     model = Bike
     template_name = 'bike_detail.html'
