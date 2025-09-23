@@ -21,3 +21,4 @@ class Bike(models.Model):
 
     def __str__(self): # Retorna o modelo da moto
         return self.model 
+    
