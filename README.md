@@ -20,9 +20,7 @@ Este projeto é uma aplicação web desenvolvida com Django para cadastro, lista
 
 - **Python 3.11+**
 - **Django 5.1**
-- **SQLite** (banco de dados padrão do Django)
-- **HTML5** e **CSS3** (templates e estilização)
-- **Bootstrap** (opcional, para estilização dos formulários)
-- **Admin do Django** (interface administrativa)
+- **SQLite** 
+- **HTML5** e **CSS3** 
+- **Admin do Django** 
 - **Sistema de arquivos local** para upload de imagens
-
