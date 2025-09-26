@@ -138,8 +138,32 @@ Essa linha indica que esse modelo faz conexão com modelo básico chamado "base.
 
     .price-tag {
       font-weight: 600;
-      color: var(--primary-color);
     }
+
+     button[type="submit"]:hover {
+        background-color: #108eb8;
+      }
+      
+      .card-title a {
+        text-decoration: none;  
+        color: inherit;  
+      }
+
+       .price-tag {
+        color: #198754; 
+        font-weight: bold;
+        text-decoration: none;
+      }
+
+      a {
+        font-size: 18px;
+        color: #0b0b0b;
+        text-decoration: none;
+      }
+      
+      a:hover {
+        color: #0096c7;
+      }
 
     @media (max-width: 768px) {
       .bike-grid {
@@ -160,6 +184,31 @@ Essa linha indica que esse modelo faz conexão com modelo básico chamado "base.
       button[type="submit"] {
         width: 100%;
       }
+
+      button[type="submit"]:hover {
+        background-color: #108eb8;
+      }
+      
+      .card-title a {
+        text-decoration: none;  
+        color: inherit;  
+      }
+
+       .price-tag {
+        color: #198754; 
+        font-weight: bold;
+        text-decoration: none;
+      }
+
+      a {
+        font-size: 18px;
+        color: #0b0b0b;
+        text-decoration: none;
+      }
+      
+      a:hover {
+        color: #0096c7;
+      }
     }
   </style>
 
@@ -173,6 +222,7 @@ Essa linha indica que esse modelo faz conexão com modelo básico chamado "base.
   <div class="bike-grid">
     {% if bikes %}
       {% for bike in bikes %}
+      <a href="{% url 'bike_detail' bike.pk %}"> 
         <div class="bike-card">
           <img src="{{ bike.photo.url }}" alt="{{ bike.model }} - {{ bike.brand }}">
           <div class="bike-info">
@@ -183,6 +233,7 @@ Essa linha indica que esse modelo faz conexão com modelo básico chamado "base.
             </p>
           </div>
         </div>
+      </a>
       {% endfor %}
     {% else %}
       <p class="no-results">Nenhuma moto encontrada.</p>
