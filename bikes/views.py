@@ -1,6 +1,6 @@
 from bikes.models import Bike
 from .forms import BikeModelForm
-from django.views.generic import ListView, CreateView, DetailView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView
 
 
 class BikesListView(ListView):
@@ -26,3 +26,9 @@ class NewBikeCreateView(CreateView):
 class BikeDetailView(DetailView):
     model = Bike
     template_name = 'bike_detail.html'
+
+class BikeUpdateView(UpdateView):
+    model = Bike
+    form_class = BikeModelForm
+    template_name = 'bike_update.html'
+    success_url = '/bikes/'
