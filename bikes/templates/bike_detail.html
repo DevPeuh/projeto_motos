@@ -91,5 +91,6 @@
   </div>
   <div class="buttons-container">
     <a href="{% url 'bike_update' pk=object.pk %}" class="btn btn-primary">Editar</a>
+    <a href="{% url 'bike_delete' pk=object.pk %}" class="btn btn-danger">Deletar</a>
   </div>
 {% endblock %}

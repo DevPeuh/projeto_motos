@@ -1,6 +1,7 @@
 from bikes.models import Bike
 from .forms import BikeModelForm
-from django.views.generic import ListView, CreateView, DetailView, UpdateView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 
 
 class BikesListView(ListView):
@@ -31,6 +32,11 @@ class BikeUpdateView(UpdateView):
     model = Bike
     form_class = BikeModelForm
     template_name = 'bike_update.html'
-    success_url = '/bikes/'
 
-    
+    def get_success_url(self):
+        return reverse_lazy('bike_detail', kwargs={'pk': self.object.pk})
+
+class BikeDeleteView(DeleteView):
+    model = Bike
+    template_name = 'bike_delete.html'
+    success_url = '/bikes/'
