@@ -32,3 +32,5 @@ class BikeUpdateView(UpdateView):
     form_class = BikeModelForm
     template_name = 'bike_update.html'
     success_url = '/bikes/'
+
+    
