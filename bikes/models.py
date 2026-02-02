@@ -16,7 +16,7 @@ class Bike(models.Model):
     model_year = models.IntegerField(blank=True, null=True) # Ano do modelo podendo ser nulo
     plate = models.CharField(max_length=10, blank=True, null=True) # Placa da moto podendo ser nulo
     value = models.FloatField(blank=True, null=True) # Valor da moto podendo ser nulo
-    photo = models.ImageField(upload_to='bikes/', blank=True, null=True) # Foto da moto salva no diretório bikes
+    photo = models.ImageField(upload_to='bikes/', blank=False, null=False) # Foto da moto salva no diretório bikes
     
 
     def __str__(self): # Retorna o modelo da moto

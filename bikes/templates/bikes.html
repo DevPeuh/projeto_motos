@@ -224,7 +224,11 @@ Essa linha indica que esse modelo faz conexão com modelo básico chamado "base.
       {% for bike in bikes %}
       <a href="{% url 'bike_detail' bike.pk %}"> 
         <div class="bike-card">
-          <img src="{{ bike.photo.url }}" alt="{{ bike.model }} - {{ bike.brand }}">
+          {% if bike.photo %}
+            <img src="{{ bike.photo.url }}" alt="{{ bike.model }} - {{ bike.brand }}">
+          {% else %}
+            <p class="no-photo">Foto não disponível</p>
+          {% endif %} 
           <div class="bike-info">
             <h2>{{ bike.brand }} {{ bike.model }}</h2>
             <p>

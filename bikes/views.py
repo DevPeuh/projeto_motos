@@ -19,16 +19,16 @@ class BikesListView(ListView):
             bike = bike.filter(model__icontains=search) #icontains é para ignorar maiúsculas ou minúsculas
         return bike
 
+class BikeDetailView(DetailView):
+    model = Bike
+    template_name = 'bike_detail.html'
+
 @method_decorator(login_required(login_url='/login/'), name='dispatch') # dispatch é o método que lida com as requisições HTTP
 class NewBikeCreateView(CreateView):
     model = Bike
     form_class = BikeModelForm
     template_name = 'new_bike.html'
     success_url = '/bikes/'
-
-class BikeDetailView(DetailView):
-    model = Bike
-    template_name = 'bike_detail.html'
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
 class BikeUpdateView(UpdateView):
